@@ -1,0 +1,39 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+group 'oao.rsm'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()    }
+    dependencies {
+        classpath ("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: SpringBootPlugin
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+bootJar {
+    baseName='retranslator'
+    version='1.0'
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.0.0.RELEASE'
+// https://mvnrepository.com/artifact/org.apache.kafka/kafka
+    compile group: 'org.apache.kafka', name: 'kafka_2.12', version: '1.1.0'
+    // https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka
+    compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.1.7.RELEASE'
+}
